@@ -1,10 +1,475 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>TecData</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecdata - Softwares que simplifican tu negocio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #1d4ed8 100%);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+        }
+        
+        .section-gradient {
+            background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .icon-bg {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
-<body>
-  <h1>TecData</h1>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <div class="icon-bg p-2 rounded-lg mr-2">
+                        <i data-lucide="code-2" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-gray-900">Tecdata</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#inicio" class="text-gray-600 hover:text-blue-600 transition">Inicio</a>
+                    <a href="#soluciones" class="text-gray-600 hover:text-blue-600 transition">Soluciones</a>
+                    <a href="#servicios" class="text-gray-600 hover:text-blue-600 transition">Servicios</a>
+                    <a href="#contacto" class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition">Contáctanos</a>
+                </div>
+                <button class="md:hidden" onclick="toggleMenu()">
+                    <i data-lucide="menu" class="w-6 h-6 text-gray-700"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#inicio" class="block text-gray-600 py-2">Inicio</a>
+                <a href="#soluciones" class="block text-gray-600 py-2">Soluciones</a>
+                <a href="#servicios" class="block text-gray-600 py-2">Servicios</a>
+                <a href="#contacto" class="block text-blue-600 font-semibold py-2">Contáctanos</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-gradient min-h-screen flex items-center pt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-white">
+                    <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                        Tecdata
+                    </h1>
+                    <h2 class="text-2xl md:text-3xl font-light mb-8 text-blue-200">
+                        Softwares que simplifican tu negocio y potencian tus resultados
+                    </h2>
+                    <p class="text-lg text-gray-300 mb-8 leading-relaxed">
+                        En Tecdata desarrollamos softwares inteligentes para ayudar a negocios y personas a trabajar mejor, vender más y tomar decisiones con seguridad.
+                    </p>
+                    <p class="text-gray-400 mb-8">
+                        Creamos soluciones tecnológicas prácticas, fáciles de usar y pensadas para resolver problemas reales del día a día. No hacemos software complicado. Hacemos herramientas que funcionan.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#soluciones" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition flex items-center">
+                            <i data-lucide="arrow-right" class="w-5 h-5 mr-2"></i>
+                            Ver Soluciones
+                        </a>
+                        <a href="#contacto" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition flex items-center">
+                            <i data-lucide="message-circle" class="w-5 h-5 mr-2"></i>
+                            Contactar
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden lg:block">
+                    <img src="http://static.photos/technology/640x360/1" alt="Technology" class="rounded-2xl shadow-2xl w-full h-auto object-cover" style="max-height: 500px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Soluciones Digitales -->
+    <section id="soluciones" class="section-gradient py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center icon-bg text-white px-4 py-2 rounded-full text-sm font-medium mb-4">
+                    <i data-lucide="zap" class="w-4 h-4 mr-2"></i>
+                    Nuestras Soluciones
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Soluciones digitales hechas para crecer contigo</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Cada negocio es distinto. Por eso en Tecdata diseñamos sistemas que se adaptan a tus necesidades, sin procesos innecesarios ni costos ocultos.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-hover transition-all duration-300">
+                    <div class="icon-bg w-14 h-14 rounded-xl flex items-center justify-center mb-6">
+                        <i data-lucide="trending-up" class="w-7 h-7 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Optimizar ventas</h3>
+                    <p class="text-gray-600">Incrementa tus ingresos con herramientas diseñadas para maximizar conversiones y fidelizar clientes.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-hover transition-all duration-300">
+                    <div class="icon-bg w-14 h-14 rounded-xl flex items-center justify-center mb-6">
+                        <i data-lucide="box" class="w-7 h-7 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Control de inventarios</h3>
+                    <p class="text-gray-600">Gestiona tus operaciones en tiempo real con nuestro sistema de inventario avanzado.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-hover transition-all duration-300">
+                    <div class="icon-bg w-14 h-14 rounded-xl flex items-center justify-center mb-6">
+                        <i data-lucide="clock" class="w-7 h-7 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Reducir errores</h3>
+                    <p class="text-gray-600">Automatiza procesos y minimiza errores humanos para mayor eficiencia operativa.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-hover transition-all duration-300">
+                    <div class="icon-bg w-14 h-14 rounded-xl flex items-center justify-center mb-6">
+                        <i data-lucide="bar-chart-3" class="w-7 h-7 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Datos claros</h3>
+                    <p class="text-gray-600">Obtén información clara y detallada para tomar mejores decisiones estratégicas.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-hover transition-all duration-300">
+                    <div class="icon-bg w-14 h-14 rounded-xl flex items-center justify-center mb-6">
+                        <i data-lucide="scale" class="w-7 h-7 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Escalar negocio</h3>
+                    <p class="text-gray-600">Crece con tecnología confiable que se adapta a medida que tu negocio evoluciona.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-hover transition-all duration-300">
+                    <div class="icon-bg w-14 h-14 rounded-xl flex items-center justify-center mb-6">
+                        <i data-lucide="shield-check" class="w-7 h-7 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Plataforma segura</h3>
+                    <p class="text-gray-600">Todo desde una plataforma segura, moderna y fácil de usar para tu tranquilidad.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios" class="bg-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <div class="inline-flex items-center bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+                        <i data-lucide="check-circle" class="w-4 h-4 mr-2"></i>
+                        ¿Qué hacemos?
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Desarrollamos soluciones de software para distintos sectores</h2>
+                    <p class="text-xl text-gray-600 mb-8">Nuestro enfoque es simple: resolver problemas con tecnología útil.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="icon-bg p-3 rounded-lg mr-4 flex-shrink-0">
+                                <i data-lucide="shopping-cart" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Sistemas de ventas e inventario</h3>
+                                <p class="text-gray-600 mt-1">Soluciones completas para gestionar tu comercio de principio a fin.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="icon-bg p-3 rounded-lg mr-4 flex-shrink-0">
+                                <i data-lucide="headphones" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Soporte y mejoras continuas</h3>
+                                <p class="text-gray-600 mt-1">Acompañamiento constante para que tu software siempre esté actualizado.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <img src="http://static.photos/workspace/640x360/1" alt="Nuestro equipo" class="rounded-2xl shadow-2xl w-full">
+                    <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl">
+                        <div class="flex items-center">
+                            <div class="icon-bg p-2 rounded-lg mr-3">
+                                <i data-lucide="target" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-gray-900">100%</p>
+                                <p class="text-gray-600 text-sm">Enfoque en resultados</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filosofía -->
+    <section class="gradient-bg py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="text-white">
+                    <div class="inline-flex items-center bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium mb-4">
+                        <i data-lucide="users" class="w-4 h-4 mr-2"></i>
+                        Nuestra Filosofía
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Tecnología pensando en personas, no solo empresas</h2>
+                    <p class="text-xl text-blue-200 mb-8">
+                        Creemos que el software debe ser intuitivo, rápido y accesible.
+                    </p>
+                    <p class="text-blue-100 mb-6 leading-relaxed">
+                        Por eso nuestras soluciones están diseñadas para que cualquier persona pueda usarlas sin complicaciones, incluso sin conocimientos técnicos.
+                    </p>
+                    
+                    <div class="grid grid-cols-3 gap-6 mt-8">
+                        <div class="text-center">
+                            <p class="text-4xl font-bold">🚀</p>
+                            <p class="text-blue-200 text-sm mt-2">Menos estrés</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-4xl font-bold">📊</p>
+                            <p class="text-blue-200 text-sm mt-2">Más control</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-4xl font-bold">📈</p>
+                            <p class="text-blue-200 text-sm mt-2">Mejores resultados</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+                    <div class="grid gap-6">
+                        <div class="bg-white/10 rounded-xl p-6">
+                            <div class="flex items-center mb-4">
+                                <i data-lucide="zap" class="w-8 h-8 text-yellow-300 mr-3"></i>
+                                <span class="text-xl font-semibold text-white">Intuitivo</span>
+                            </div>
+                            <p class="text-blue-200">Fácil de usar desde el primer día</p>
+                        </div>
+                        <div class="bg-white/10 rounded-xl p-6">
+                            <div class="flex items-center mb-4">
+                                <i data-lucide="speed" class="w-8 h-8 text-green-300 mr-3"></i>
+                                <span class="text-xl font-semibold text-white">Rápido</span>
+                            </div>
+                            <p class="text-blue-200">Alto rendimiento sin esperas</p>
+                        </div>
+                        <div class="bg-white/10 rounded-xl p-6">
+                            <div class="flex items-center mb-4">
+                                <i data-lucide="globe" class="w-8 h-8 text-blue-300 mr-3"></i>
+                                <span class="text-xl font-semibold text-white">Accesible</span>
+                            </div>
+                            <p class="text-blue-200">Para todos, sin barreras técnicas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ¿Por qué elegirnos? -->
+    <section class="section-gradient py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+                    <i data-lucide="star" class="w-4 h-4 mr-2"></i>
+                    Ventajas Tecdata
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">¿Por qué elegir Tecdata?</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white rounded-2xl p-8 shadow-lg text-center card-hover transition-all duration-300">
+                    <div class="icon-bg w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="award" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Experiencia</h3>
+                    <p class="text-gray-600">Años de experiencia en desarrollo de software creando soluciones efectivas.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg text-center card-hover transition-all duration-300">
+                    <div class="icon-bg w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="layers" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Soluciones claras</h3>
+                    <p class="text-gray-600">Software bien estructurado y fácil de entender, sin complejidades innecesarias.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg text-center card-hover transition-all duration-300">
+                    <div class="icon-bg w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="target" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Resultados reales</h3>
+                    <p class="text-gray-600">Enfoque medible en mejorar indicadores concretos de tu negocio.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg text-center card-hover transition-all duration-300">
+                    <div class="icon-bg w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="handshake" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Soporte cercano</h3>
+                    <p class="text-gray-600">Acompañamiento personalizado para que nunca estés solo.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg text-center card-hover transition-all duration-300">
+                    <div class="icon-bg w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="cpu" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Tecnología moderna</h3>
+                    <p class="text-gray-600">Usamos las mejores herramientas para garantizar seguridad y rendimiento.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg text-center card-hover transition-all duration-300">
+                    <div class="icon-bg w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="heart" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Aliados tecnológicos</h3>
+                    <p class="text-gray-600">No solo desarrollamos software, creamos socios para tu crecimiento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section id="contacto" class="hero-gradient py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-flex items-center bg-green-500 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <i data-lucide="rocket" class="w-4 h-4 mr-2"></i>
+                Empieza hoy
+            </div>
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Empieza hoy con Tecdata</h2>
+            <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                Si buscas una solución digital que realmente aporte valor a tu negocio o proyecto personal, Tecdata es para ti.
+            </p>
+            
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 max-w-2xl mx-auto">
+                <div class="flex items-center justify-center mb-6">
+                    <i data-lucide="shopping-cart" class="w-12 h-12 text-blue-400 mr-4"></i>
+                    <div class="text-left">
+                        <h3 class="text-xl font-bold text-white">Sistema de Ventas e Inventario</h3>
+                        <p class="text-blue-200">La solución ideal para organizar, controlar y hacer crecer tu negocio</p>
+                    </div>
+                </div>
+                <a href="/sistema-de-ventas-e-inventario/" target="_blank" class="inline-flex items-center bg-green-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-green-600 transition text-lg">
+                    <i data-lucide="arrow-right" class="w-5 h-5 mr-2"></i>
+                    Ver Sistema de Ventas e Inventario
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div class="col-span-2">
+                    <div class="flex items-center mb-4">
+                        <div class="icon-bg p-2 rounded-lg mr-2">
+                            <i data-lucide="code-2" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <span class="text-2xl font-bold text-white">Tecdata</span>
+                    </div>
+                    <p class="text-gray-400 mb-4 max-w-md">
+                        Softwares que simplifican tu negocio y potencian tus resultados. 
+                        Tecnologia útil para personas y empresas.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-gray-800 p-2 rounded-lg hover:bg-blue-600 transition">
+                            <i data-lucide="facebook" class="w-5 h-5 text-gray-400 hover:text-white"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 p-2 rounded-lg hover:bg-blue-400 transition">
+                            <i data-lucide="twitter" class="w-5 h-5 text-gray-400 hover:text-white"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 p-2 rounded-lg hover:bg-pink-600 transition">
+                            <i data-lucide="instagram" class="w-5 h-5 text-gray-400 hover:text-white"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 p-2 rounded-lg hover:bg-blue-700 transition">
+                            <i data-lucide="linkedin" class="w-5 h-5 text-gray-400 hover:text-white"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Solutions</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Sales System</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Inventory Control</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Business Analytics</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Custom Development</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Services</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-500">© 2024 Tecdata. All rights reserved. Developing software that makes a difference.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-md');
+            } else {
+                nav.classList.remove('shadow-md');
+            }
+        });
+    </script>
 </body>
 </html>
