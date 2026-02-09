@@ -935,15 +935,17 @@
 	paypal.Buttons({
 
 		createOrder() {
-			return fetch("/crear-orden", {
+			return fetch(`${BACKEND_URL}/crear-orden`, {
 				method: "POST"
 			})
 			.then(res => res.json())
-			.then(data => data.orderID);
+			.then(data => {
+				return data.orderID;
+			});
 		},
 
 		onApprove(data) {
-			return fetch(`/capturar-orden/${data.orderID}`, {
+			return fetch(`${BACKEND_URL}/capturar-orden/${data.orderID}`, {
 				method: "POST"
 			})
 			.then(res => res.json())
@@ -953,13 +955,13 @@
 		},
 
 		onError(err) {
-			console.error(err);
-			alert("❌ Error en el pago");
+			console.error("PayPal error:", err);
+			alert("❌ Error en el pago. Intenta nuevamente.");
 		}
 
 	}).render("#paypal-button-container");
 
-	// BOTÓN ANTIGUO → MUESTRA PAYPAL
+	// BOTÓN → MUESTRA PAYPAL
 	document.getElementById('btn-comprar').addEventListener('click', function () {
 		const paypalContainer = document.getElementById('paypal-button-container');
 		paypalContainer.classList.remove('hidden');
