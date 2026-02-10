@@ -932,50 +932,61 @@
         });
     </script>
 	
-	<script src="https://www.paypal.com/sdk/js?client-id=AY4iVLx6OjJseUI-zqC5clgnXDFAfIyXYzLOPRTyfU4c9UNRZAnItcKAYv2vspJhDpgHeyi90yh2bA9C&currency=USD"></script>
+	<script src="https://www.paypal.com/sdk/js?client-id=AY4iVLx6OjJseUI-zqC5clgnXDFAfIyXYzLOPRTyfU4c9UNRZAnItcKAYv2vspJhDpgHeyi90yh2bA9C&currency=USD&intent=capture"></script>
+
+	<script>
+	const btnComprar = document.getElementById("btn-comprar");
+	const paypalContainer = document.getElementById("paypal-button-container");
+
+	btnComprar.addEventListener("click", () => {
+		btnComprar.classList.add("hidden");
+		paypalContainer.classList.remove("hidden");
+	});
+	</script>
 
 	<script>
 	paypal.Buttons({
+		style: {
+			layout: 'vertical',
+			color: 'gold',
+			shape: 'rect',
+			label: 'paypal'
+		},
 
-		createOrder() {
-			return fetch(`${BACKEND_URL}/crear-orden`, {
-				method: "POST"
+		createOrder: function () {
+			return fetch(`${window.BACKEND_URL}/crear-orden`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				}
 			})
 			.then(res => res.json())
 			.then(data => {
-				return data.orderID;
+				console.log("🟢 Orden creada:", data);
+				return data.id; // orderID
 			});
 		},
 
-		onApprove(data) {
-			return fetch(`${BACKEND_URL}/capturar-orden/${data.orderID}`, {
+		onApprove: function (data) {
+			console.log("🟢 Pago aprobado:", data.orderID);
+
+			return fetch(`${window.BACKEND_URL}/capturar-orden/${data.orderID}`, {
 				method: "POST"
 			})
 			.then(res => res.json())
-			.then(() => {
-				alert("✅ Pago completado correctamente");
+			.then(details => {
+				alert("✅ Pago completado. Revisa tu correo, tu licencia fue enviada.");
+				console.log("✅ Captura exitosa:", details);
 			});
 		},
 
-		onError(err) {
-			console.error("PayPal error:", err);
-			alert("❌ Error en el pago. Intenta nuevamente.");
+		onError: function (err) {
+			console.error("❌ Error PayPal:", err);
+			alert("Ocurrió un error con el pago. Intenta nuevamente.");
 		}
 
-	}).render("#paypal-button-container");
-
-	// BOTÓN → MUESTRA PAYPAL
-	document.querySelectorAll('#btn-comprar, #btn-comprar-footer')
-		.forEach(btn => {
-			btn.addEventListener('click', () => {
-				const paypal = document.getElementById('paypal-button-container');
-				paypal.classList.remove('hidden');
-				paypal.scrollIntoView({ behavior: 'smooth', block: 'center' });
-			});
-		});
+	}).render('#paypal-button-container');
 	</script>
 
 </body>
 </html>
-
-
