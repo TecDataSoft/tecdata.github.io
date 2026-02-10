@@ -935,67 +935,42 @@
 	<script src="https://www.paypal.com/sdk/js?client-id=AY4iVLx6OjJseUI-zqC5clgnXDFAfIyXYzLOPRTyfU4c9UNRZAnItcKAYv2vspJhDpgHeyi90yh2bA9C&currency=USD&intent=capture"></script>
 
 	<script>
-		const btnComprar = document.getElementById("btn-comprar");
-		const paypalContainer = document.getElementById("paypal-button-container");
+	const btnComprar = document.getElementById("btn-comprar");
+	const paypalContainer = document.getElementById("paypal-button-container");
 
-		// Mostrar PayPal al hacer clic
-		btnComprar.addEventListener("click", () => {
-			btnComprar.classList.add("hidden");
-			paypalContainer.classList.remove("hidden");
-		});
+	// Mostrar PayPal al hacer clic
+	btnComprar.addEventListener("click", () => {
+		btnComprar.classList.add("hidden");
+		paypalContainer.classList.remove("hidden");
+	});
 
-		// Inicializar PayPal Buttons
-		paypal.Buttons({
-			style: {
-				layout: 'vertical',
-				color: 'gold',
-				shape: 'rect',
-				label: 'paypal'
-			},
-
-			// Crear la orden en tu backend
-			createOrder: function () {
-				return fetch(`${window.BACKEND_URL}/api/paypal/crear-orden`, {
-					method: "POST",
-					headers: { "Content-Type": "application/json" }
-				})
-				.then(res => res.json())
-				.then(data => {
-					if (!data.orderID) {
-						console.error("❌ No se recibió orderID del backend:", data);
-						alert("Ocurrió un error al crear la orden. Intenta nuevamente.");
-						throw new Error("No orderID returned from backend");
-					}
-					console.log("💰 OrderID recibido:", data.orderID);
-					return data.orderID;
-				});
-			},
-
-			// Capturar el pago
-			onApprove: function (data) {
-				console.log("🔔 onApprove data:", data);
-				return fetch(`${window.BACKEND_URL}/api/paypal/capturar-orden/${data.orderID}`, {
-					method: "POST",
-					headers: { "Content-Type": "application/json" }
-				})
-				.then(res => res.json())
-				.then(details => {
-					if (!details.id) {
-						console.error("❌ Error al capturar la orden:", details);
-						alert("Ocurrió un error al procesar el pago. Intenta nuevamente.");
-						return;
-					}
-					console.log("✅ Pago capturado correctamente:", details);
-					alert("✅ Pago completado. Tu licencia ha sido enviada por correo.");
-				});
-			},
-
-			// Manejo de errores
-			onError: function (err) {
-				console.error("❌ Error PayPal:", err);
-				alert("Ocurrió un error con el pago. Intenta nuevamente.");
-			}
-		}).render('#paypal-button-container');
+	// Inicializar PayPal Buttons
+	paypal.Buttons({
+		style: {
+			layout: 'vertical',
+			color: 'gold',
+			shape: 'rect',
+			label: 'paypal'
+		},
+		// Solo creamos la orden, NO se captura en frontend
+		createOrder: function () {
+			return fetch(`${window.BACKEND_URL}/api/paypal/crear-orden`, {
+				method: "POST",
+				headers: { "Content-Type": "application/json" }
+			})
+			.then(res => res.json())
+			.then(data => data.orderID);
+		},
+		// Al aprobar, redirigimos al usuario a PayPal
+		onApprove: function () {
+			alert("✅ Pago completado en PayPal. La licencia será enviada automáticamente a tu correo.");
+			// No hacemos capture aquí. Todo se procesa desde el webhook.
+		},
+		onError: function (err) {
+			console.error("❌ Error PayPal:", err);
+			alert("Ocurrió un error con el pago. Intenta nuevamente.");
+		}
+	}).render('#paypal-button-container');
 	</script>
 
 </body>
