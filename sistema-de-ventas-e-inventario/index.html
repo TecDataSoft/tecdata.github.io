@@ -955,7 +955,7 @@
 
 			// Crear la orden en tu backend
 			createOrder: function () {
-				return fetch(`${window.BACKEND_URL}/crear-orden`, {
+				return fetch(`${window.BACKEND_URL}/api/paypal/crear-orden`, {
 					method: "POST",
 					headers: { "Content-Type": "application/json" }
 				})
@@ -974,7 +974,7 @@
 			// Capturar el pago
 			onApprove: function (data) {
 				console.log("🔔 onApprove data:", data);
-				return fetch(`${window.BACKEND_URL}/capturar-orden/${data.orderID}`, {
+				return fetch(`${window.BACKEND_URL}/api/paypal/capturar-orden/${data.orderID}`, {
 					method: "POST",
 					headers: { "Content-Type": "application/json" }
 				})
