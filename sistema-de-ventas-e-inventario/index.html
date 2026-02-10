@@ -716,11 +716,11 @@
 				</div>
 
 				<!-- Botón -->
-				<a id="btn-comprar" class="btn-primary text-white px-10 py-5 rounded-xl font-bold text-xl inline-flex items-center gap-3 pulse-animation">
+				<button id="btn-comprar" class="btn-primary px-8 py-4 rounded-lg font-semibold text-lg inline-flex items-center gap-2 pulse-animation">
 					<i data-lucide="arrow-right" class="w-6 h-6"></i>
 					Adquirir el Sistema de Ventas e Inventario
-				</a>
-                
+				</button>
+			
                 <p class="mt-6 text-gray-600">
                     <i data-lucide="shield-check" class="w-5 h-5 inline mr-2 text-lime"></i>
                     Garantía de satisfacción · Soporte incluido · Easy implementación
@@ -798,11 +798,10 @@
                 <p class="text-lg text-teal font-semibold">👉 Da el paso hoy y vende como un negocio profesional.</p>
                 
                 <div class="mt-8">
-                    <a id="btn-comprar-footer" class="btn-primary text-white px-8 py-4 rounded-lg font-semibold text-lg inline-flex items-center gap-2">
+                    <a href="#comprar" class="btn-primary text-white px-8 py-4 rounded-lg font-semibold text-lg inline-flex items-center gap-2">
                         <i data-lucide="arrow-right" class="w-5 h-5"></i>
                         Obtenerlo Ahora
                     </a>
-					<div id="paypal-button-container" class="hidden mt-10 flex justify-center"></div>
                 </div>
             </div>
         </div>
@@ -932,60 +931,51 @@
         });
     </script>
 	
+	<!-- SDK de PayPal -->
 	<script src="https://www.paypal.com/sdk/js?client-id=AY4iVLx6OjJseUI-zqC5clgnXDFAfIyXYzLOPRTyfU4c9UNRZAnItcKAYv2vspJhDpgHeyi90yh2bA9C&currency=USD&intent=capture"></script>
 
 	<script>
-	const btnComprar = document.getElementById("btn-comprar");
-	const paypalContainer = document.getElementById("paypal-button-container");
+		const btnComprar = document.getElementById("btn-comprar");
+		const paypalContainer = document.getElementById("paypal-button-container");
 
-	btnComprar.addEventListener("click", () => {
-		btnComprar.classList.add("hidden");
-		paypalContainer.classList.remove("hidden");
-	});
-	</script>
+		// Mostrar PayPal al hacer clic
+		btnComprar.addEventListener("click", () => {
+			btnComprar.classList.add("hidden");
+			paypalContainer.classList.remove("hidden");
+		});
 
-	<script>
-	paypal.Buttons({
-		style: {
-			layout: 'vertical',
-			color: 'gold',
-			shape: 'rect',
-			label: 'paypal'
-		},
-
-		createOrder: function () {
-			return fetch(`${window.BACKEND_URL}/crear-orden`, {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json"
-				}
-			})
-			.then(res => res.json())
-			.then(data => {
-				console.log("🟢 Orden creada:", data);
-				return data.id; // orderID
-			});
-		},
-
-		onApprove: function (data) {
-			console.log("🟢 Pago aprobado:", data.orderID);
-
-			return fetch(`${window.BACKEND_URL}/capturar-orden/${data.orderID}`, {
-				method: "POST"
-			})
-			.then(res => res.json())
-			.then(details => {
-				alert("✅ Pago completado. Revisa tu correo, tu licencia fue enviada.");
-				console.log("✅ Captura exitosa:", details);
-			});
-		},
-
-		onError: function (err) {
-			console.error("❌ Error PayPal:", err);
-			alert("Ocurrió un error con el pago. Intenta nuevamente.");
-		}
-
-	}).render('#paypal-button-container');
+		// Inicializar PayPal Buttons
+		paypal.Buttons({
+			style: {
+				layout: 'vertical',
+				color: 'gold',
+				shape: 'rect',
+				label: 'paypal'
+			},
+			createOrder: function () {
+				return fetch(`${window.BACKEND_URL}/api/paypal/create-order`, {
+					method: "POST",
+					headers: { "Content-Type": "application/json" }
+				})
+				.then(res => res.json())
+				.then(data => data.id);
+			},
+			onApprove: function (data) {
+				return fetch(`${window.BACKEND_URL}/api/paypal/capture-order`, {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ orderID: data.orderID })
+				})
+				.then(res => res.json())
+				.then(details => {
+					alert("✅ Pago completado. Tu licencia ha sido enviada por correo.");
+				});
+			},
+			onError: function (err) {
+				console.error("❌ Error PayPal:", err);
+				alert("Ocurrió un error con el pago. Intenta nuevamente.");
+			}
+		}).render('#paypal-button-container');
 	</script>
 
 </body>
