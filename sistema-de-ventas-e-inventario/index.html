@@ -952,25 +952,45 @@
 				shape: 'rect',
 				label: 'paypal'
 			},
+
+			// Crear la orden en tu backend
 			createOrder: function () {
-				return fetch(`${window.BACKEND_URL}/api/paypal/create-order`, {
+				return fetch(`${window.BACKEND_URL}/crear-orden`, {
 					method: "POST",
 					headers: { "Content-Type": "application/json" }
 				})
 				.then(res => res.json())
-				.then(data => data.id);
+				.then(data => {
+					if (!data.orderID) {
+						console.error("❌ No se recibió orderID del backend:", data);
+						alert("Ocurrió un error al crear la orden. Intenta nuevamente.");
+						throw new Error("No orderID returned from backend");
+					}
+					console.log("💰 OrderID recibido:", data.orderID);
+					return data.orderID;
+				});
 			},
+
+			// Capturar el pago
 			onApprove: function (data) {
-				return fetch(`${window.BACKEND_URL}/api/paypal/capture-order`, {
+				console.log("🔔 onApprove data:", data);
+				return fetch(`${window.BACKEND_URL}/capturar-orden/${data.orderID}`, {
 					method: "POST",
-					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify({ orderID: data.orderID })
+					headers: { "Content-Type": "application/json" }
 				})
 				.then(res => res.json())
 				.then(details => {
+					if (!details.id) {
+						console.error("❌ Error al capturar la orden:", details);
+						alert("Ocurrió un error al procesar el pago. Intenta nuevamente.");
+						return;
+					}
+					console.log("✅ Pago capturado correctamente:", details);
 					alert("✅ Pago completado. Tu licencia ha sido enviada por correo.");
 				});
 			},
+
+			// Manejo de errores
 			onError: function (err) {
 				console.error("❌ Error PayPal:", err);
 				alert("Ocurrió un error con el pago. Intenta nuevamente.");
