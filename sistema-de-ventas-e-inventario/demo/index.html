@@ -253,7 +253,75 @@
 <script>
     lucide.createIcons();
 </script>
+	
+	<!-- SDK de PayPal -->
+	<script src="https://www.paypal.com/sdk/js?client-id=AY4iVLx6OjJseUI-zqC5clgnXDFAfIyXYzLOPRTyfU4c9UNRZAnItcKAYv2vspJhDpgHeyi90yh2bA9C&currency=USD&intent=capture"></script>
+
+	<script>
+	const btnComprar = document.getElementById("btn-comprar");
+	const paypalContainer = document.getElementById("paypal-button-container");
+
+	// Mostrar PayPal al hacer clic
+	btnComprar.addEventListener("click", () => {
+		btnComprar.classList.add("hidden");
+		paypalContainer.classList.remove("hidden");
+	});
+
+	// Inicializar PayPal Buttons
+	paypal.Buttons({
+		style: {
+			layout: 'vertical',
+			color: 'gold',
+			shape: 'rect',
+			label: 'paypal'
+		},
+
+		// 1️⃣ Crear la orden en el backend
+		createOrder: function () {
+			return fetch(`${window.BACKEND_URL}/api/paypal/crear-orden`, {
+				method: "POST",
+				headers: { "Content-Type": "application/json" }
+			})
+			.then(res => res.json())
+			.then(data => data.orderID);
+		},
+
+		// 2️⃣ Capturar la orden al aprobar el pago
+		onApprove: function (data, actions) {
+			return actions.order.capture().then(function(details) {
+				console.log("✅ Pago completado por:", details.payer.name.given_name);
+
+				// 3️⃣ Llamar al backend para crear la licencia inmediatamente
+				fetch(`${window.BACKEND_URL}/api/crear_licencia`, {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						orderID: data.orderID,
+						payerID: data.payerID,
+						email: details.payer.email_address,
+						name: details.payer.name.given_name
+					})
+				})
+				.then(res => res.json())
+				.then(resData => {
+					alert("Compra exitosa. Tu licencia ha sido enviada al correo: " + details.payer.email_address);
+				})
+				.catch(err => {
+					console.error("❌ Error creando licencia:", err);
+					alert("Hubo un problema generando tu licencia. Contacta soporte.");
+				});
+			});
+		},
+
+		onError: function (err) {
+			console.error("❌ Error PayPal:", err);
+			alert("Ocurrió un error con el pago. Intenta nuevamente.");
+		}
+
+	}).render('#paypal-button-container');
+	</script>
 
 </body>
 </html>
+
 
