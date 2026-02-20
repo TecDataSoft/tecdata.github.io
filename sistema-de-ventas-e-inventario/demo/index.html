@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo - Sistema de Ventas e Inventario | Tecdata</title>
+
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#002E79',
+                        secondary: '#006BA4',
+                        teal: '#025D5C',
+                        green: '#59AC33',
+                        lime: '#92C218',
+                        light: '#f8fafc',
+                        dark: '#0f172a',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        body { font-family: 'Inter', sans-serif; }
+
+        .gradient-hero {
+            background: linear-gradient(135deg, #002E79 0%, #025D5C 50%, #006BA4 100%);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #59AC33 0%, #4a9428 100%);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #92C218 0%, #59AC33 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(92, 194, 24, 0.3);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #006BA4 0%, #002E79 100%);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 107, 164, 0.3);
+        }
+
+        .vsl-video {
+            position: relative;
+            width: 100%;
+            max-width: 640px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 46, 121, 0.25);
+        }
+
+        .vsl-video video {
+            width: 100%;
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="bg-light text-dark">
+
+<!-- Header -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+    <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+            <img src="https://tecdatasoft.com/tecdata-imagen.png" class="h-10">
+            <span class="text-2xl font-bold text-gray-900">TECDATA</span>
+        </div>
+
+        <a href="/sistema-de-ventas-e-inventario/" class="btn-secondary text-white px-6 py-2.5 rounded-lg font-semibold">
+            Volver
+        </a>
+    </nav>
+</header>
+
+<!-- HERO DEMO -->
+<section class="gradient-hero min-h-screen flex items-center justify-center pt-24 pb-16 text-white">
+    <div class="container mx-auto px-6 text-center max-w-4xl">
+
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-6 mt-6">
+            Mira cómo funciona el Sistema de Ventas e Inventario
+        </h1>
+
+        <p class="text-xl text-white/80 mb-10">
+            Aprende a usar la versión básica gratuita y descubre todo lo que desbloquea la versión PRO
+        </p>
+
+        <!-- VIDEO -->
+        <div class="vsl-video mb-10">
+            <video controls preload="metadata">
+                <source src="https://d1yei2z3i6k35z.cloudfront.net/3567488/6997f2071db75_demo.mp4" type="video/mp4">
+                Tu navegador no soporta el video.
+            </video>
+        </div>
+
+        <!-- BOTONES -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-6 mt-8">
+
+            <a href="https://d1yei2z3i6k35z.cloudfront.net/3567488/69980ebb03abe_SistemadeVentaseInventario.zip"
+               class="btn-secondary text-white px-8 py-4 rounded-lg font-semibold text-lg inline-flex items-center gap-2">
+                <i data-lucide="download"></i>
+                Descargar Demo Gratuita
+            </a>
+
+            <a href="/sistema-de-ventas-e-inventario/#comprar"
+               class="btn-primary text-white px-8 py-4 rounded-lg font-semibold text-lg inline-flex items-center gap-2">
+                <i data-lucide="lock"></i>
+                Adquirir Licencia PRO
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-6 max-w-6xl">
+
+        <div class="text-center max-w-3xl mx-auto mb-10">
+            <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+                ¿Qué incluye la versión Demo y qué desbloquea la PRO?
+            </h2>
+
+            <p class="text-center text-gray-600 mb-8">
+                La versión PRO elimina todas las limitaciones y desbloquea el potencial completo del SVI.
+            </p>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse shadow-lg rounded-xl overflow-hidden">
+                <thead class="bg-primary text-white">
+                    <tr>
+                        <th class="p-4">Funcionalidad</th>
+                        <th class="p-4 text-center">Demo</th>
+                        <th class="p-4 text-center">PRO</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-light">
+                    <tr class="border-b">
+                        <td class="p-4">Registro de productos</td>
+                        <td class="p-4 text-center">✔</td>
+                        <td class="p-4 text-center">✔</td>
+                    </tr>
+
+                    <tr class="border-b">
+                        <td class="p-4">Registro de ventas</td>
+                        <td class="p-4 text-center">✔</td>
+                        <td class="p-4 text-center">✔</td>
+                    </tr>
+
+                    <tr class="border-b">
+                        <td class="p-4">Reportes resumidos</td>
+                        <td class="p-4 text-center">✔</td>
+                        <td class="p-4 text-center">✔</td>
+                    </tr>
+
+                    <tr class="border-b">
+                        <td class="p-4">Reportes detallados y gráficos de venta</td>
+                        <td class="p-4 text-center text-red-500">No</td>
+                        <td class="p-4 text-center text-green-600 font-bold">✔</td>
+                    </tr>
+
+                    <tr class="border-b">
+                        <td class="p-4">Importar productos desde Excel</td>
+                        <td class="p-4 text-center text-red-500">No</td>
+                        <td class="p-4 text-center text-green-600 font-bold">✔</td>
+                    </tr>
+
+                    <tr class="border-b">
+                        <td class="p-4">Creación de usuarios</td>
+                        <td class="p-4 text-center text-red-500">No</td>
+                        <td class="p-4 text-center text-green-600 font-bold">✔</td>
+                    </tr>
+
+                    <tr class="border-b">
+                        <td class="p-4">Control de stock</td>
+                        <td class="p-4 text-center text-red-500">No</td>
+                        <td class="p-4 text-center text-green-600 font-bold">✔</td>
+                    </tr>
+
+                    <tr class="border-b">
+                        <td class="p-4">Boletas y facturas</td>
+                        <td class="p-4 text-center text-red-500">No</td>
+                        <td class="p-4 text-center text-green-600 font-bold">✔</td>
+                    </tr>
+
+                    <tr class="border-b">
+                        <td class="p-4">Usuarios con permisos</td>
+                        <td class="p-4 text-center text-red-500">No</td>
+                        <td class="p-4 text-center text-green-600 font-bold">✔</td>
+                    </tr>
+
+                    <tr class="border-b">
+                        <td class="p-4">Respaldo de datos</td>
+                        <td class="p-4 text-center text-red-500">No</td>
+                        <td class="p-4 text-center text-green-600 font-bold">✔</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="py-16 bg-light text-center">
+    <div class="container mx-auto px-6 max-w-3xl">
+        <h2 class="text-3xl font-bold text-primary mb-4">
+            Pruébalo hoy mismo y siente la diferencia
+        </h2>
+
+        <p class="text-gray-600 mb-8">
+            Descubre cómo el orden y el control pueden transformar tu negocio desde el primer día.
+        </p>
+
+        <a href="/sistema-de-ventas-e-inventario/#comprar"
+           class="btn-primary text-white px-8 py-4 rounded-lg font-semibold text-lg inline-flex items-center gap-2">
+            <i data-lucide="arrow-right"></i>
+            Obtener Licencia Ahora
+        </a>
+    </div>
+</section>
+
+<footer class="bg-dark text-white py-8 text-center">
+    <p class="text-gray-400">© 2026 TecdataSoft. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+    lucide.createIcons();
+</script>
+
+</body>
+</html>
