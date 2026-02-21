@@ -1028,7 +1028,18 @@ src="https://www.facebook.com/tr?id=1241411960705619&ev=PageView&noscript=1"
 				})
 				.then(res => res.json())
 				.then(resData => {
-					alert("Compra exitosa. Tu licencia ha sido enviada al correo: " + details.payer.email_address);
+				  if (resData.success) {
+				
+				    // ✅ Guardar email del cliente
+				    localStorage.setItem("cliente_email", details.payer.email_address);
+				    localStorage.setItem("cliente_nombre", details.payer.name.given_name);
+				
+				    // ✅ Redirigir
+				    window.location.href = "/gracias.html";
+				
+				  } else {
+				    alert("Pago recibido pero hubo un problema con tu licencia.");
+				  }
 				})
 				.catch(err => {
 					console.error("❌ Error creando licencia:", err);
@@ -1047,6 +1058,7 @@ src="https://www.facebook.com/tr?id=1241411960705619&ev=PageView&noscript=1"
 
 </body>
 </html>
+
 
 
 
