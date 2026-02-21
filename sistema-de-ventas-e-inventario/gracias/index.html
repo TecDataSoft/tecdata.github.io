@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Gracias por tu compra! | Tecdata</title>
+
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#002E79',
+                        secondary: '#006BA4',
+                        teal: '#025D5C',
+                        green: '#59AC33',
+                        lime: '#92C218',
+                        light: '#f8fafc',
+                        dark: '#0f172a',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+
+        .gradient-hero {
+            background: linear-gradient(135deg, #002E79 0%, #025D5C 50%, #006BA4 100%);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #59AC33 0%, #4a9428 100%);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #92C218 0%, #59AC33 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(92, 194, 24, 0.3);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #006BA4 0%, #002E79 100%);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 107, 164, 0.3);
+        }
+    </style>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-244BRHHXV1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-244BRHHXV1');
+</script>
+
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "vkqqtu0c88");
+</script>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1241411960705619');
+fbq('track', 'PageView');
+fbq('track', 'Purchase');
+</script>
+<noscript>
+<img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1241411960705619&ev=Purchase&noscript=1"/>
+</noscript>
+<!-- End Meta Pixel Code -->
+
+</head>
+
+<body class="bg-light text-dark">
+
+<!-- Header -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+    <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="https://tecdatasoft.com" class="flex items-center gap-2">
+            <img src="https://tecdatasoft.com/tecdata-imagen.png" class="h-10">
+            <span class="text-2xl font-bold text-gray-900">TECDATA</span>
+        </a>
+
+        <a href="https://tecdatasoft.com" class="btn-secondary text-white px-6 py-2.5 rounded-lg font-semibold">
+            Ir al inicio
+        </a>
+    </nav>
+</header>
+
+<!-- HERO GRACIAS -->
+<section class="gradient-hero min-h-screen flex items-center justify-center pt-28 pb-16 text-white">
+    <div class="container mx-auto px-6 text-center max-w-3xl">
+
+        <div class="mb-6">
+            <i data-lucide="check-circle" class="w-16 h-16 mx-auto text-lime"></i>
+        </div>
+
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-6">
+            ¡Gracias por tu compra! 🎉
+        </h1>
+
+        <p class="text-xl text-white/90 mb-6">
+            Tu compra de la <strong>Licencia PRO</strong> se ha realizado correctamente.
+        </p>
+
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 mb-10 border border-white/20">
+            <p class="text-lg text-white/90 leading-relaxed">
+                📩 En unos minutos recibirás tu licencia en el <strong>correo electrónico de PayPal</strong> con el que realizaste la compra.
+            </p>
+
+            <p class="text-white/80 mt-4">
+                Si no ves el correo, revisa también tu carpeta de <strong>spam</strong> o <strong>correo no deseado</strong>.
+            </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+
+            <a href="mailto:contacto@tecdatasoft.com"
+               class="btn-secondary text-white px-8 py-4 rounded-lg font-semibold text-lg inline-flex items-center gap-2">
+                <i data-lucide="mail"></i>
+                Soporte por correo
+            </a>
+
+            <a href="https://tecdatasoft.com"
+               class="btn-primary text-white px-8 py-4 rounded-lg font-semibold text-lg inline-flex items-center gap-2">
+                <i data-lucide="home"></i>
+                Volver al sitio
+            </a>
+
+        </div>
+
+        <p class="text-white/70 mt-10 text-sm">
+            ¿Problemas con la entrega? Escríbenos y te ayudaremos rápidamente.
+        </p>
+
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white py-12">
+    <div class="container mx-auto px-6">
+        <div class="grid md:grid-cols-4 gap-8 mb-8">
+            <div class="col-span-2">
+                <div class="flex items-start gap-6">
+                    <img src="https://tecdatasoft.com/tecdata.png"
+                         alt="Tecdata"
+                         class="h-32 w-auto brightness-0 invert flex-shrink-0">
+
+                    <div>
+                        <p class="text-gray-400 max-w-md mb-4 leading-snug">
+                            Softwares que simplifican tu negocio y potencian tus resultados. Tecnología útil para personas y empresas.
+                        </p>
+
+                        <div class="flex space-x-4">
+                            <a href="https://www.facebook.com/profile.php?id=61588584746267" class="bg-gray-800 p-2 rounded-lg hover:bg-secondary transition">
+                                <i data-lucide="facebook" class="w-5 h-5 text-gray-400 hover:text-white"></i>
+                            </a>
+                            <a href="https://www.youtube.com/@Tecdata-u8g" class="bg-gray-800 p-2 rounded-lg hover:bg-teal transition">
+                                <i data-lucide="youtube" class="w-5 h-5 text-gray-400 hover:text-white"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-bold mb-4">Contacto</h4>
+                <ul class="space-y-2 text-gray-400">
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                        <a href="mailto:contacto@tecdatasoft.com">contacto@tecdatasoft.com</a>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="phone" class="w-4 h-4"></i>
+                        <a href="https://wa.me/51981236653">+51 981 236 653</a>
+                    </li>
+                    <li class="flex items-center gap-2 clarity-mask">
+                        <i data-lucide="map-pin" class="w-4 h-4"></i>
+                        Lima, Perú
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="border-t border-white/10 pt-8 text-center text-gray-400">
+            <p>&copy; 2026 Tecdata. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    lucide.createIcons();
+</script>
+
+</body>
+</html>
