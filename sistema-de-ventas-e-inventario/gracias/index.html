@@ -137,7 +137,7 @@ src="https://www.facebook.com/tr?id=1241411960705619&ev=Purchase&noscript=1"/>
         </p>
 
         <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 mb-10 border border-white/20">
-            <p class="text-lg text-white/90 leading-relaxed">
+            <p id="mensaje-personalizado" class="text-lg text-white/90 leading-relaxed">
                 📩 En unos minutos recibirás tu licencia en el <strong>correo electrónico de PayPal</strong> con el que realizaste la compra.
             </p>
 
@@ -221,9 +221,36 @@ src="https://www.facebook.com/tr?id=1241411960705619&ev=Purchase&noscript=1"/>
     </div>
 </footer>
 
+<!-- 🚀 SCRIPT DINÁMICO (PASO 2 IMPLEMENTADO) -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const email = localStorage.getItem("cliente_email");
+    const nombre = localStorage.getItem("cliente_nombre");
+    const mensaje = document.getElementById("mensaje-personalizado");
+
+    if (email && mensaje) {
+
+        let texto = "📩 ";
+
+        if (nombre) {
+            texto += `<strong>${nombre}</strong>, `;
+        }
+
+        texto += `tu licencia será enviada al correo <strong>${email}</strong> en unos minutos.`;
+
+        mensaje.innerHTML = texto;
+
+        // ✅ limpiar storage
+        localStorage.removeItem("cliente_email");
+        localStorage.removeItem("cliente_nombre");
+    }
+});
+</script>
+
 <script>
     lucide.createIcons();
 </script>
 
 </body>
+
 </html>
