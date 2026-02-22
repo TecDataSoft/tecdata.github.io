@@ -1028,16 +1028,23 @@ src="https://www.facebook.com/tr?id=1241411960705619&ev=PageView&noscript=1"
 				})
 				.then(res => res.json())
 				.then(resData => {
-				  if (resData.success) {
+				  if (resData && resData.success) {
 				
-				    // ✅ Guardar email del cliente
-				    localStorage.setItem("cliente_email", details.payer.email_address);
-				    localStorage.setItem("cliente_nombre", details.payer.name.given_name);
+					// ✅ Guardar email de forma segura
+					if (details?.payer?.email_address) {
+					  localStorage.setItem("cliente_email", details.payer.email_address);
+					}
+					
+					// ✅ Guardar nombre de forma segura
+					if (details?.payer?.name?.given_name) {
+					  localStorage.setItem("cliente_nombre", details.payer.name.given_name);
+					}
 				
 				    // ✅ Redirigir
-				    window.location.href = "/gracias.html";
+				    window.location.href = "https://tecdatasoft.com/sistema-de-ventas-e-inventario/gracias/";
 				
 				  } else {
+					console.error("Respuesta backend:", resData);
 				    alert("Pago recibido pero hubo un problema con tu licencia.");
 				  }
 				})
@@ -1058,6 +1065,7 @@ src="https://www.facebook.com/tr?id=1241411960705619&ev=PageView&noscript=1"
 
 </body>
 </html>
+
 
 
 
