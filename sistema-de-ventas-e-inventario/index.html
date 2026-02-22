@@ -767,7 +767,7 @@ src="https://www.facebook.com/tr?id=1241411960705619&ev=PageView&noscript=1"
 				</div>
 
 				<!-- Botón -->
-				<button id="btn-comprar" onclick="fbq('track', 'InitiateCheckout');" class="btn-primary px-8 py-4 rounded-lg font-semibold text-lg inline-flex items-center gap-2 pulse-animation">
+				<button id="btn-comprar" class="btn-primary px-8 py-4 rounded-lg font-semibold text-lg inline-flex items-center gap-2 pulse-animation">
 					<i data-lucide="arrow-right" class="w-6 h-6"></i>
 					Adquirir Licencia PRO del Sistema de Ventas e Inventario
 				</button>
@@ -1068,8 +1068,21 @@ src="https://www.facebook.com/tr?id=1241411960705619&ev=PageView&noscript=1"
 	}).render('#paypal-button-container');
 	</script>
 
+	<script>
+	document.addEventListener('DOMContentLoaded', function () {
+	  const btnComprar = document.getElementById('btn-comprar');
+	
+	  if (btnComprar) {
+	    btnComprar.addEventListener('click', function () {
+	      fbq('track', 'InitiateCheckout');
+	    });
+	  }
+	});
+	</script>
+
 </body>
 </html>
+
 
 
 
