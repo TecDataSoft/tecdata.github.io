@@ -996,25 +996,22 @@
 				})
 				.then(res => res.json())
 				.then(resData => {
-				  if (resData && resData.success) {
-				
+	
+					// 🔍 LOG para diagnóstico (muy importante)
+					console.log("Respuesta backend:", resData);
+	
 					// ✅ Guardar email de forma segura
 					if (details?.payer?.email_address) {
-					  localStorage.setItem("cliente_email", details.payer.email_address);
+						localStorage.setItem("cliente_email", details.payer.email_address);
 					}
-					
+	
 					// ✅ Guardar nombre de forma segura
 					if (details?.payer?.name?.given_name) {
-					  localStorage.setItem("cliente_nombre", details.payer.name.given_name);
+						localStorage.setItem("cliente_nombre", details.payer.name.given_name);
 					}
-				
-				    // ✅ Redirigir
-				    window.location.href = "https://tecdatasoft.com/sistema-de-ventas-e-inventario/gracias/";
-				
-				  } else {
-					console.error("Respuesta backend:", resData);
-				    alert("Pago recibido pero hubo un problema con tu licencia.");
-				  }
+	
+					// ✅ REDIRECCIÓN ROBUSTA (si el pago ya se capturó)
+					window.location.href = "https://tecdatasoft.com/sistema-de-ventas-e-inventario/gracias/";
 				})
 				.catch(err => {
 					console.error("❌ Error creando licencia:", err);
@@ -1033,6 +1030,7 @@
 
 </body>
 </html>
+
 
 
 
