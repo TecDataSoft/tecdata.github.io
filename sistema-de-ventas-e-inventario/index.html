@@ -1069,19 +1069,24 @@ src="https://www.facebook.com/tr?id=1241411960705619&ev=PageView&noscript=1"
 	</script>
 
 	<script>
-	document.addEventListener('DOMContentLoaded', function () {
-	  const btnComprar = document.getElementById('btn-comprar');
+	document.addEventListener('click', function(e) {
 	
-	  if (btnComprar) {
-	    btnComprar.addEventListener('click', function () {
-	      fbq('track', 'InitiateCheckout');
-	    });
+	  // 🔹 Detecta botón PayPal
+	  if (e.target.closest('.paypal-button')) {
+	    fbq('track', 'InitiateCheckout');
 	  }
+	
+	  // 🔹 Detecta botón tarjeta
+	  if (e.target.closest('.card-button')) {
+	    fbq('track', 'InitiateCheckout');
+	  }
+	
 	});
 	</script>
 
 </body>
 </html>
+
 
 
 
