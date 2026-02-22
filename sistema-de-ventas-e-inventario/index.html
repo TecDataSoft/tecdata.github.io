@@ -1008,6 +1008,13 @@ src="https://www.facebook.com/tr?id=1241411960705619&ev=PageView&noscript=1"
 			label: 'paypal'
 		},
 
+		// ✅ EVENTO REAL DE INTENCIÓN DE PAGO
+		onClick: function (data, actions) {
+			if (typeof fbq === 'function') {
+				fbq('track', 'InitiateCheckout');
+			}
+		},
+
 		// 1️⃣ Crear la orden en el backend
 		createOrder: function () {
 			return fetch(`${window.BACKEND_URL}/api/paypal/crear-orden`, {
@@ -1068,24 +1075,9 @@ src="https://www.facebook.com/tr?id=1241411960705619&ev=PageView&noscript=1"
 	}).render('#paypal-button-container');
 	</script>
 
-	<script>
-	document.addEventListener('click', function(e) {
-	
-	  // 🔹 Detecta botón PayPal
-	  if (e.target.closest('.paypal-button')) {
-	    fbq('track', 'InitiateCheckout');
-	  }
-	
-	  // 🔹 Detecta botón tarjeta
-	  if (e.target.closest('.card-button')) {
-	    fbq('track', 'InitiateCheckout');
-	  }
-	
-	});
-	</script>
-
 </body>
 </html>
+
 
 
 
