@@ -994,16 +994,28 @@ src="https://www.facebook.com/tr?id=1241411960705619&ev=PageView&noscript=1"
 	const paypalContainer = document.getElementById("paypal-button-container");
 
 	// Mostrar PayPal al hacer clic
+	let paypalCargado = false;
+	
 	btnComprar.addEventListener("click", () => {
+	    if (paypalCargado) return;
+	    paypalCargado = true;
+	
 	    btnComprar.innerText = "Cargando métodos de pago...";
 	    btnComprar.classList.add("opacity-70","pointer-events-none");
 	
 	    paypalContainer.classList.remove("hidden");
 	
-	    // ocultar después de un pequeño delay seguro
+	    // 🔒 ocultar solo si el contenedor tiene contenido
 	    setTimeout(() => {
-	        btnComprar.classList.add("hidden");
-	    }, 400);
+	        if (paypalContainer.innerHTML.trim() !== "") {
+	            btnComprar.classList.add("hidden");
+	        } else {
+	            // rollback si algo falló
+	            paypalCargado = false;
+	            btnComprar.innerText = "Adquirir Licencia PRO del Sistema de Ventas e Inventario";
+	            btnComprar.classList.remove("opacity-70","pointer-events-none");
+	        }
+	    }, 800); // un poco más seguro que 400ms
 	});
 
 	// Inicializar PayPal Buttons
