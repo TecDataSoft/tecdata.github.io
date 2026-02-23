@@ -995,7 +995,12 @@ src="https://www.facebook.com/tr?id=1241411960705619&ev=PageView&noscript=1"
 		const btnComprar = document.getElementById("btn-comprar");
 		const paypalContainer = document.getElementById("paypal-button-container");
 	    const loading = document.getElementById("paypal-loading");
-	
+
+		if (!btnComprar || !paypalContainer || !loading) {
+		    console.error("❌ Elementos del DOM no encontrados");
+		    return;
+		}
+		
 		let paypalCargado = false;
 	
 	    // ✅ Mostrar PayPal al hacer clic
@@ -1011,16 +1016,18 @@ src="https://www.facebook.com/tr?id=1241411960705619&ev=PageView&noscript=1"
 		
 		    // 🔒 ocultar solo si el contenedor tiene contenido
 		    setTimeout(() => {
-		        if (paypalContainer.innerHTML.trim() !== "") {
-		            btnComprar.classList.add("hidden");
-		        } else {
+			    const paypalListo = paypalContainer.children.length > 0;
+			
+			    if (paypalListo) {
+			        btnComprar.classList.add("hidden");
+			    } else {
 		            // rollback si algo falló
 		            paypalCargado = false;
 	                loading.classList.add("hidden");
 		            btnComprar.innerText = "Adquirir Licencia PRO del Sistema de Ventas e Inventario";
 		            btnComprar.classList.remove("opacity-70","pointer-events-none");
 		        }
-		    }, 800);
+		    }, 1200);
 		});
 	
 	    // ✅ Inicializar PayPal
@@ -1123,6 +1130,7 @@ src="https://www.facebook.com/tr?id=1241411960705619&ev=PageView&noscript=1"
 	</script>
 </body>
 </html>
+
 
 
 
