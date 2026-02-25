@@ -10,9 +10,7 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <script>
-        window.BACKEND_URL = "https://svi-license-api.onrender.com";
-    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -162,7 +160,7 @@ src="https://www.facebook.com/tr?id=1241411960705619&ev=PageView&noscript=1"
                 Descargar Demo Gratuita
             </a>
 
-            <a href="/sistema-de-ventas-e-inventario/demo/#comprar" class="btn-primary text-white px-8 py-4 rounded-lg font-semibold text-lg inline-flex items-center gap-2">
+            <a href="/sistema-de-ventas-e-inventario/#comprar" target="_blank" class="btn-primary text-white px-8 py-4 rounded-lg font-semibold text-lg inline-flex items-center gap-2">
                 <i data-lucide="lock"></i>
                 Adquirir Licencia PRO
             </a>
@@ -272,10 +270,10 @@ src="https://www.facebook.com/tr?id=1241411960705619&ev=PageView&noscript=1"
             Descubre cómo el orden y el control pueden transformar tu negocio desde el primer día.
         </p>
 
-        <button id="btn-comprar" class="btn-primary text-white px-8 py-4 rounded-lg font-semibold text-lg inline-flex items-center gap-2">
+        <a href="/sistema-de-ventas-e-inventario/#comprar" target="_blank"  class="btn-primary text-white px-8 py-4 rounded-lg font-semibold text-lg inline-flex items-center gap-2">
             <i data-lucide="arrow-right"></i>
             Obtener Licencia Ahora
-        </button>
+        </a>
     </div>
 </section>
 
@@ -318,7 +316,7 @@ src="https://www.facebook.com/tr?id=1241411960705619&ev=PageView&noscript=1"
                     <li><a href="https://tecdatasoft.com/sistema-de-ventas-e-inventario/#caracteristicas" class="text-gray-400 hover:text-lime transition" target="_blank">Qué hace el sistema</a></li>
                     <li><a href="https://tecdatasoft.com/sistema-de-ventas-e-inventario/#beneficios" class="text-gray-400 hover:text-lime transition" target="_blank">Cómo mejora tu negocio</a></li>
                     <li><a href="https://tecdatasoft.com/sistema-de-ventas-e-inventario/#faq" class="text-gray-400 hover:text-lime transition" target="_blank">Preguntas frecuentes</a></li>
-                    <li><a href="https://tecdatasoft.com/sistema-de-ventas-e-inventario/demo/#comprar" class="text-gray-400 hover:text-lime transition" target="_blank">Precio</a></li>
+                    <li><a href="https://tecdatasoft.com/sistema-de-ventas-e-inventario/#comprar" class="text-gray-400 hover:text-lime transition" target="_blank">Precio</a></li>
                 </ul>
             </div>
             
@@ -351,114 +349,6 @@ src="https://www.facebook.com/tr?id=1241411960705619&ev=PageView&noscript=1"
     lucide.createIcons();
 </script>
 
-	<!-- SDK de PayPal -->
-	<script src="https://www.paypal.com/sdk/js?client-id=AY4iVLx6OjJseUI-zqC5clgnXDFAfIyXYzLOPRTyfU4c9UNRZAnItcKAYv2vspJhDpgHeyi90yh2bA9C&currency=USD&intent=capture"></script>
-
-	<script>
-	const btnComprar = document.getElementById("btn-comprar");
-	const paypalContainer = document.getElementById("paypal-button-container");
-
-	// Mostrar PayPal al hacer clic
-	let paypalCargado = false;
-	
-	btnComprar.addEventListener("click", () => {
-	    if (paypalCargado) return;
-	    paypalCargado = true;
-	
-	    btnComprar.innerText = "Cargando métodos de pago...";
-	    btnComprar.classList.add("opacity-70","pointer-events-none");
-	
-	    paypalContainer.classList.remove("hidden");
-	
-	    // 🔒 ocultar solo si el contenedor tiene contenido
-	    setTimeout(() => {
-	        if (paypalContainer.innerHTML.trim() !== "") {
-	            btnComprar.classList.add("hidden");
-	        } else {
-	            // rollback si algo falló
-	            paypalCargado = false;
-	            btnComprar.innerText = "Adquirir Licencia PRO del Sistema de Ventas e Inventario";
-	            btnComprar.classList.remove("opacity-70","pointer-events-none");
-	        }
-	    }, 800);
-	});
-
-	// Inicializar PayPal Buttons
-	paypal.Buttons({
-		style: {
-			layout: 'vertical',
-			color: 'gold',
-			shape: 'rect',
-			label: 'paypal'
-		},
-
-		// ✅ EVENTO REAL DE INTENCIÓN DE PAGO
-		onClick: function (data, actions) {
-			if (typeof fbq === 'function') {
-				fbq('track', 'InitiateCheckout');
-			}
-		},
-
-		// 1️⃣ Crear la orden en el backend
-		createOrder: function () {
-			return fetch(`${window.BACKEND_URL}/api/paypal/crear-orden`, {
-				method: "POST",
-				headers: { "Content-Type": "application/json" }
-			})
-			.then(res => res.json())
-			.then(data => data.orderID);
-		},
-
-		// 2️⃣ Capturar la orden al aprobar el pago
-		onApprove: function (data, actions) {
-			return actions.order.capture().then(function(details) {
-				console.log("✅ Pago completado por:", details.payer.name.given_name);
-
-				// 3️⃣ Llamar al backend para crear la licencia inmediatamente
-				fetch(`${window.BACKEND_URL}/api/crear_licencia`, {
-					method: "POST",
-					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify({
-						orderID: data.orderID,
-						payerID: data.payerID,
-						email: details.payer.email_address,
-						name: details.payer.name.given_name
-					})
-				})
-				.then(res => res.json())
-				.then(resData => {
-	
-					// 🔍 LOG para diagnóstico (muy importante)
-					console.log("Respuesta backend:", resData);
-	
-					// ✅ Guardar email de forma segura
-					if (details?.payer?.email_address) {
-						localStorage.setItem("cliente_email", details.payer.email_address);
-					}
-	
-					// ✅ Guardar nombre de forma segura
-					if (details?.payer?.name?.given_name) {
-						localStorage.setItem("cliente_nombre", details.payer.name.given_name);
-					}
-	
-					// ✅ REDIRECCIÓN ROBUSTA (si el pago ya se capturó)
-					window.location.href = "https://tecdatasoft.com/sistema-de-ventas-e-inventario/gracias/";
-				})
-				.catch(err => {
-					console.error("❌ Error creando licencia:", err);
-					alert("Hubo un problema generando tu licencia. Contacta soporte.");
-				});
-			});
-		},
-
-		onError: function (err) {
-			console.error("❌ Error PayPal:", err);
-			alert("Ocurrió un error con el pago. Intenta nuevamente.");
-		}
-
-	}).render('#paypal-button-container');
-	</script>
-    
 </body>
 </html>
 
